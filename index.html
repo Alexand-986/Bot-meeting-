@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot no Seu Site</title>
+  <script src="https://cdn.jsdelivr.net/npm/botui/build/botui.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/botui/build/botui-theme-default.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      padding: 30px;
+    }
+    #chatbot {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div id="chatbot"></div>
+
+  <script>
+    var botui = new BotUI('chatbot');
+
+    botui.message.add({
+      content: 'Olá, como posso ajudar você hoje?'
+    }).then(function () {
+      return botui.action.text({
+        action: {
+          placeholder: 'Digite aqui...',
+          value: ''
+        }
+      });
+    }).then(function (res) {
+      botui.message.add({
+        content: 'Você disse: ' + res.value
+      });
+});
+  </script>
+</body>
